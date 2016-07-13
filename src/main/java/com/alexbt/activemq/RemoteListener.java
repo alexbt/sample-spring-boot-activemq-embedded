@@ -15,12 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class RemoteListener {
 	
-	/**
-     * Get a copy of the application context
-     */
-    @Autowired
-    ConfigurableApplicationContext context;
-    
     @Autowired
 	private JmsTemplate jmsTemplate;
 
@@ -29,7 +23,7 @@ public class RemoteListener {
      * Finally, clean up any ActiveMQ server stuff.
 	 * @throws JMSException 
      */
-    @JmsListener(destination = "message-in-a-bottle", containerFactory = "myJmsContainerFactory")
+    @JmsListener(destination = "message-in-a-bottle")
     public void receiveMessage(Message msg) throws JMSException {
     	System.out.println("remote-receive");
     	jmsTemplate.setDefaultDestinationName("dummy");

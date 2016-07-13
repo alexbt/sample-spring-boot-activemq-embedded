@@ -60,7 +60,7 @@ public class MqController {
 		return new AsyncResult<Message>(jmsTemplate.receive(RETURN_QUEUE));
 	}
 
-	@JmsListener(destination = RETURN_QUEUE, containerFactory = "myJmsContainerFactory")
+	@JmsListener(destination = RETURN_QUEUE)
 	public void receiveMessage(Message receive) throws JMSException {
 		synchronized (LOCK) {
 			receive.acknowledge();
